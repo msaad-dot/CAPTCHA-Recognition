@@ -1,87 +1,105 @@
-Project: CAPTCHA Recognition (CRNN + CTC)
+CAPTCHA Recognition 🔐🤖
 
-Overview
---------
-This project implements a deep learning model for recognizing text-based CAPTCHAs using a Convolutional Recurrent Neural Network (CRNN) trained with Connectionist Temporal Classification (CTC) loss.
+A Deep Learning Approach using CRNN + CTC Loss
 
-- Character set: Uppercase A–Z, Lowercase a–z, Digits 0–9 (62 symbols total).
-- Input images are resized to 200×50 grayscale, enhanced with CLAHE, normalized, and passed into the CRNN.
+<p align="center"> <img src="docs/sample1.jpg" alt="Captcha Sample" width="300"/> <img src="docs/sample2.jpg" alt="Captcha Sample" width="300"/> </p>
 
-Repository Structure
---------------------
+📌 Overview
 
-├─ model.py         # CRNN definition (inference + training with CTC)
 
-├─ preprocess.py    # Dataset loader and preprocessing
+This project implements a deep learning pipeline to recognize text-based CAPTCHAs using a Convolutional Recurrent Neural Network (CRNN) combined with Connectionist Temporal Classification (CTC) loss.
 
-├─ train.py         # Training and evaluation script
+Character set: Uppercase A–Z, Lowercase a–z, Digits 0–9 (62 symbols).
 
-├─ test.py          # Inference (single image or folder)
+Input size: Images are resized to 200×50, converted to grayscale, enhanced with CLAHE, and normalized.
 
-├─ requirements.txt # Dependencies
+Output: Sequence of 5 predicted characters decoded with CTC.
 
-└─ saved_model/     # Saved checkpoints (.keras)
+📂 Repository Structure
 
-Dataset
--------
-- Source: Kaggle — Captcha Dataset (123k images)
-  https://www.kaggle.com/datasets/parsasam/captcha-dataset
 
-- Each file name encodes the ground-truth text (e.g., `aB3xQ.png` → "aB3xQ").
-- Labels are fixed length = 5 (`MAX_CHARS=5` in preprocess.py).
-- Update the dataset path in preprocess.py:
-  DATA_DIR = "/path/to/dataset"
+- model.py         # CRNN model (inference + training with CTC)
 
-Training
---------
-Run:
-   python train.py
+- preprocess.py    # Dataset loader & preprocessing
 
-The script will:
-- Preprocess dataset and split into train/test.
-- Train CRNN with CTC loss (30 epochs by default).
-- Save checkpoints to `saved_model/crnn_ctc_best.keras`.
-- Export the final model to `saved_model/crnn_ctc_final.keras`.
+- train.py         # Training & evaluation script
 
-Evaluation
-----------
+- test.py          # Inference (single image / folder)
+
+- requirements.txt # Dependencies
+
+- README.md        # Documentation
+
+- saved_model/     # Saved checkpoints (.keras)
+
+📊 Dataset
+
+Source: Kaggle — Captcha Dataset (123k images)
+
+- Filenames encode ground truth labels (e.g., aB3xQ.png → "aB3xQ").
+
+- Fixed length: 5 characters (MAX_CHARS=5 in preprocess.py).
+
+Update dataset path in preprocess.py: DATA_DIR = "/path/to/dataset"
+
+
+🏋️ Training (python train.py)
+
+
+- Preprocess dataset → Train/Test split.
+
+- Train CRNN with CTC loss (30 epochs).
+
+- Save checkpoints → saved_model/crnn_ctc_best.keras.
+
+- Export final model → saved_model/crnn_ctc_final.keras.
+
+📈 Evaluation
+
 Metrics:
-- Exact Match Accuracy (all 5 characters correct).
+
+- Exact Match Accuracy (all 5 chars correct).
+
 - Character Error Rate (CER).
 
-Example results (with Kaggle dataset, 62-class setup):
-- Exact Match Accuracy: ~0.76
-- CER: ~0.09
+Results (Kaggle dataset, 62-class setup):
 
-Inference
----------
-Single image:
-   python test.py --model saved_model/crnn_ctc_final.keras --image path/to/captcha.png
+🎯 Exact Match Accuracy: 0.8066
 
-Folder of images:
-   python test.py --model saved_model/crnn_ctc_final.keras --folder path/to/images --limit 50
+✂️ CER: 0.0769
 
-Optional flags (test.py):
-- --no_auto_crop   disable smart cropping
-- --force_invert   force invert colors
-- --strong         stronger preprocessing for thin fonts
-- --save_debug out/ save intermediate debug images
 
-Examples
---------
-Here are some samples from the dataset
+🔍 Inference
 
-![sample1](docs/sample1.jpg)
-![sample2](docs/sample2.jpg)
+- Single image:
+  
+		python test.py --model saved_model/crnn_ctc_final.keras --image path/to/captcha.jpg
 
-Notes
------
-- To switch character sets (e.g., lowercase + digits only):
-  * Edit `CHARS` in preprocess.py.
-  * Update `NUM_CLASSES = len(CHARS) + 1` in model.py.
-  * Retrain the model.
-- Make sure CNN time steps ≥ label length (checked in train.py).
 
-Author
-------
-Mohamed Saad
+- Folder of images:
+
+		python test.py --model saved_model/crnn_ctc_final.keras --folder path/to/images --limit 50
+
+
+-- Extra flags:
+
+--no_auto_crop → disable smart cropping
+
+--force_invert → force color inversion
+
+--strong → stronger preprocessing for thin strokes
+
+--save_debug out/ → save debug images
+
+🖼️ Examples
+<p align="center"> <img src="docs/sample1.jpg" alt="Sample 1" width="250"/> <img src="docs/sample2.jpg" alt="Sample 2" width="250"/> <img src="docs/sample3.jpg" alt="Sample 3" width="250"/> </p>
+⚙️ Notes
+
+
+- To use lowercase + digits only, update CHARS in preprocess.py and adjust NUM_CLASSES in model.py.
+
+- Ensure CNN time steps ≥ label length (automatically checked in train.py).
+
+👨‍💻 Author
+
+💼 [https://github.com/msaad-dot]
