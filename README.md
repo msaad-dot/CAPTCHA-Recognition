@@ -69,7 +69,7 @@ Optional flags (test.py):
 
 Examples
 --------
-Here are some samples from the dataset (add them under a `docs/` folder):
+Here are some samples from the dataset
 
 ![sample1](docs/sample1.jpg)
 ![sample2](docs/sample2.jpg)
