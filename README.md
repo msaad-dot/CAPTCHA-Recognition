@@ -92,7 +92,7 @@ Results (Kaggle dataset, 62-class setup):
 --save_debug out/ → save debug images
 
 🖼️ Examples
-<p align="center"> <img src="docs/sample1.jpg" alt="Sample 1" width="250"/> <img src="docs/sample2.jpg" alt="Sample 2" width="250"/> <img src="docs/sample3.jpg" alt="Sample 3" width="250"/> </p>
+<p align="center"> <img src="docs/sample3.jpg" alt="Sample 3" width="250"/> <img src="docs/sample4.jpg" alt="Sample 4" width="250"/> <img src="docs/sample5.jpg" alt="Sample 5" width="250"/> </p>
 ⚙️ Notes
 
 
