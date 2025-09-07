@@ -25,7 +25,7 @@ Repository Structure
 Dataset
 -------
 - Source: Kaggle — Captcha Dataset (123k images)
-  https://www.kaggle.com/datasets/fournierp/captcha-version-2
+  https://www.kaggle.com/datasets/parsasam/captcha-dataset
 
 - Each file name encodes the ground-truth text (e.g., `aB3xQ.png` → "aB3xQ").
 - Labels are fixed length = 5 (`MAX_CHARS=5` in preprocess.py).
