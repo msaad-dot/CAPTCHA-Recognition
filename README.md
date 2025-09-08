@@ -80,6 +80,11 @@ Results (Kaggle dataset, 62-class setup):
 ---
 
 ## 🔄 Export Safe Model
+During training, the CRNN model includes a **Lambda layer** (`collapse_height`).  
+This can sometimes cause issues when reloading the model in different TensorFlow/Keras versions.  
+
+To make the model portable, use `export_safe.py` to rebuild it with a registered custom layer (`CollapseHeight`) and save it again:  
+
 After training, convert the final model into a **safe format** (replaces Lambda with a registered custom layer):
 
 ```bash
